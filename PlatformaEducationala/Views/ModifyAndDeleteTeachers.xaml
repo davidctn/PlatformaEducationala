@@ -1,0 +1,112 @@
+﻿<Window x:Class="PlatformaEducationala.Views.ModifyAndDeleteTeachers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlatformaEducationala.Views" xmlns:ctx="clr-namespace:PlatformaEducationala.ViewModels"
+        mc:Ignorable="d"
+        Title="ModifyAndDeleteTeachers" Height="450" Width="800"
+        ResizeMode="NoResize"
+        Background="#181235">
+    <Window.DataContext>
+        <ctx:PersonVM/>
+    </Window.DataContext>
+    <Grid>
+        <DataGrid Name="personsGrid"  Margin="230,10,10,0" AutoGenerateColumns="False"
+                  ItemsSource="{Binding TeachersList}" IsReadOnly="True"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="FirstName" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="LastName" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="EmailAdress" Binding="{Binding EmailAddress}"/>
+                <DataGridTextColumn Header="Password" Binding="{Binding Password}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button 
+                x:Name="DeleteTeacherButton"
+                Content="Sterge"
+                Foreground="Black"
+                FontSize="16"
+                FontWeight="Medium"
+                FontFamily="Fonts/#Dosis"
+                Visibility="Visible"
+                Margin="45,10,644,375"
+             Command="{Binding DeleteTeacherCommand}"
+                    CommandParameter="{Binding ElementName=personsGrid, Path=SelectedItem}">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                    <Setter Property="Background" Value="#FE6584"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger
+                                Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="DarkViolet"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="90"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Property=Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button 
+                x:Name="ModifyTeacherButton"
+                Content="Modifica"
+                Foreground="Black"
+                FontSize="16"
+                FontWeight="Medium"
+                FontFamily="Fonts/#Dosis"
+                Visibility="Visible"
+                Margin="45,55,644,331"
+             Command="{Binding ModifyTeacherCommand}"
+                    CommandParameter="{Binding ElementName=personsGrid, Path=SelectedItem}">
+
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                    <Setter Property="Background" Value="#FE6584"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger
+                                Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="DarkViolet"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="90"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Property=Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <TextBox x:Name="FirstNameInput" HorizontalAlignment="Left" Height="30" Margin="0,140,0,0" TextWrapping="Wrap" Text="{Binding ElementName=personsGrid, 
+                Path=SelectedItem.FirstName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="225"/>
+        <TextBox x:Name="LastNameInput" HorizontalAlignment="Left" Height="30" Margin="0,205,0,0" TextWrapping="Wrap" Text="{Binding ElementName=personsGrid, 
+                Path=SelectedItem.LastName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="225"/>
+        <TextBox x:Name="EmailAdressInput" HorizontalAlignment="Left" Height="30" Margin="0,280,0,0" TextWrapping="Wrap" Text="{Binding ElementName=personsGrid, 
+                Path=SelectedItem.EmailAddress, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="225"/>
+        <TextBox x:Name="PasswordInput" HorizontalAlignment="Left" Height="30" Margin="0,350,0,0" TextWrapping="Wrap" Text="{Binding ElementName=personsGrid, 
+                Path=SelectedItem.Password, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="225">
+        </TextBox>
+        <Label Content="FirstName"  HorizontalAlignment="Left" Margin="50,95,0,0" VerticalAlignment="Top" Foreground="Wheat" FontSize="20" Height="40"></Label>
+        <Label Content="LastName"  HorizontalAlignment="Left" Margin="52,165,0,0" VerticalAlignment="Top" Foreground="Wheat" FontSize="20" Height="40"></Label>
+        <Label Content="Email Address"  HorizontalAlignment="Left" Margin="50,235,0,0" VerticalAlignment="Top" Foreground="Wheat" FontSize="20" Height="40"></Label>
+        <Label Content="Password"  HorizontalAlignment="Left" Margin="57,310,0,0" VerticalAlignment="Top" Foreground="Wheat" FontSize="20" Height="40"></Label>
+    </Grid>
+</Window>

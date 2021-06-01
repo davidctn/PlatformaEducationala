@@ -1,0 +1,151 @@
+﻿<Window x:Class="PlatformaEducationala.Views.CoursesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlatformaEducationala.Views"
+        xmlns:ctx="clr-namespace:PlatformaEducationala.ViewModels"
+        xmlns:convert1="clr-namespace:PlatformaEducationala.Converters"
+        mc:Ignorable="d"
+        Title="CoursesWindow"
+        ResizeMode="NoResize"
+        Background="#181235"
+        Height="306"
+        Width="436"
+        >
+    <Window.DataContext>
+        <ctx:CourseVM/>
+    </Window.DataContext>
+    <Window.Resources>
+        <convert1:CourseConverter x:Key="courseConvert" ></convert1:CourseConverter>
+    </Window.Resources>
+    <Grid Margin="518,0,0,165">
+
+        <DataGrid Name="coursesGrid"  Margin="-210,0,90,-168" AutoGenerateColumns="False"
+                  ItemsSource="{Binding CoursesList, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"                
+                  ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="CourseName" Binding="{Binding CourseName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button 
+                x:Name="DeleteCourseButton"
+                Content="Sterge"
+                Foreground="Black"
+                FontSize="16"
+                FontWeight="Medium"
+                FontFamily="Fonts/#Dosis"
+                Visibility="Visible"
+                Margin="-365,0,260,-48" Height="50" VerticalAlignment="Bottom" Click="DeleteCourseButton_Click"
+                    CommandParameter="{Binding ElementName=coursesGrid, Path=SelectedItem}"  
+             Command="{Binding DeleteCourseCommand}">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                    <Setter Property="Background" Value="#FE6584"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger
+                                Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="DarkViolet"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="90"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Property=Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button 
+                x:Name="AddCourseButton"
+                Content="Adauga"
+                Foreground="Black"
+                FontSize="16"
+                FontWeight="Medium"
+                FontFamily="Fonts/#Dosis"
+                Visibility="Visible"            
+           Margin="-510,110,0,-48" HorizontalAlignment="Left" Width="90" Click="AddCourseButton_Click">
+            <!--Command="{Binding AddCourseCommand}"       
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource courseConverter}">
+                    <Binding ElementName="CourseNameInput" Path="Text"/>
+                </MultiBinding>
+            </Button.CommandParameter>-->
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                    <Setter Property="Background" Value="#FE6584"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger
+                                Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="DarkViolet"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="90"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Property=Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button 
+                x:Name="ModifyCourseButton"
+                Content="Modifica"
+                Foreground="Black"
+                FontSize="16"
+                FontWeight="Medium"
+                FontFamily="Fonts/#Dosis"
+                Visibility="Visible"
+                Margin="-425,180,330,-113"
+            Click="ModifyCourseButton_Click"
+            Command="{Binding ModifyCourseCommand}"
+                    CommandParameter="{Binding ElementName=coursesGrid, Path=SelectedItem}">
+
+
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                    <Setter Property="Background" Value="#FE6584"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger
+                                Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="DarkViolet"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="90"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Property=Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <TextBox x:Name="CourseNameInput" HorizontalAlignment="Left" Height="30" Margin="-510,50,0,0" TextWrapping="Wrap" Text="{Binding ElementName=coursesGrid, 
+                Path=SelectedItem.CourseName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="225"/>
+        <Label Content="Course Name"  HorizontalAlignment="Left" Margin="-510,10,0,0" VerticalAlignment="Top" Foreground="Wheat" FontSize="20" Height="35" Width="160" RenderTransformOrigin="0.5,0.5"/>
+    </Grid>
+</Window>

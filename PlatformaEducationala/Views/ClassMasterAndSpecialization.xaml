@@ -1,0 +1,107 @@
+﻿<Window x:Class="PlatformaEducationala.Views.ClassMasterAndSpecialization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlatformaEducationala.Views"
+        xmlns:ctx1="clr-namespace:PlatformaEducationala.ViewModels"
+        mc:Ignorable="d"
+        Title="ClassMasterAndSpecialization" Height="466" Width="800"
+        ResizeMode="NoResize"
+        Background="#181235">
+    
+    <Window.DataContext>
+        <ctx1:ClassVM/>
+    </Window.DataContext>
+    <Grid>
+ 
+    <DataGrid Name="Grid"  Margin="521,0,-6,5" AutoGenerateColumns="False"
+                  ItemsSource="{Binding ClassesListDB}" IsReadOnly="True"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+            <DataGridTextColumn Header="ClassName" Binding="{Binding ClassName}"/>
+            <DataGridTextColumn Header="Specialization" Binding="{Binding Specialization}"/>
+            <DataGridTextColumn Header="ClassMaster" Binding="{Binding ClassMaster}"/>
+        </DataGrid.Columns>
+    </DataGrid>
+        <Button 
+                x:Name="AddClassMasterButton"
+                Content="Adauga diriginte"
+                Foreground="Black"
+                FontSize="16"
+                FontWeight="Medium"
+                FontFamily="Fonts/#Dosis"
+                Visibility="Visible"
+                Margin="25,10,579,376"
+             Command="{Binding AddClassMasterCommand}"
+                    CommandParameter="{Binding ElementName=Grid, Path=SelectedItem}" RenderTransformOrigin="0.524,-0.6">
+
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                    <Setter Property="Background" Value="#FE6584"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger
+                                Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="DarkViolet"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="150"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Property=Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button 
+                x:Name="AddSpecializationButton"
+                Content="Adauga specializare"
+                Foreground="Black"
+                FontSize="16"
+                FontWeight="Medium"
+                FontFamily="Fonts/#Dosis"
+                Visibility="Visible"
+                Margin="25,85,579,301"
+                Command="{Binding AddSpecializationCommand}"
+                    CommandParameter="{Binding ElementName=Grid, Path=SelectedItem}" RenderTransformOrigin="0.619,3.2">
+
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                    <Setter Property="Background" Value="#FE6584"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger
+                                Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="DarkViolet"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="160"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Property=Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <TextBox x:Name="SpecializationInput" HorizontalAlignment="Left" Height="30" Margin="235,106,0,0" TextWrapping="Wrap" Text="{Binding ElementName=Grid, 
+                Path=SelectedItem.Specialization, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="225"
+                 />
+        <TextBox x:Name="ClassMasterInput" HorizontalAlignment="Left" Height="30" Margin="235,31,0,0" TextWrapping="Wrap" Text="{Binding ElementName=Grid, 
+                Path=SelectedItem.ClassMaster, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="225"/>
+    </Grid>
+
+</Window>

@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E9D68699-52C5-426E-B456-8E1199C8E227}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PlatformaEducationala</RootNamespace>
+    <AssemblyName>PlatformaEducationala</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.90\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Converters\CourseConverter.cs" />
+    <Compile Include="Converters\PersonConverter.cs" />
+    <Compile Include="Models\BusinessLogicLayer\AbsenceBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ClassBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\CourseBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\GradeBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\PersonBLL.cs" />
+    <Compile Include="Models\DataAccessLayer\AbsenceDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\ClassDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\CourseDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\DALHelper.cs" />
+    <Compile Include="Models\DataAccessLayer\GradeDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\PersonDAL.cs" />
+    <Compile Include="Models\EntityLayer\Absence.cs" />
+    <Compile Include="Models\EntityLayer\Average.cs" />
+    <Compile Include="Models\EntityLayer\BaseNotification.cs" />
+    <Compile Include="Models\EntityLayer\Class.cs" />
+    <Compile Include="Models\EntityLayer\Course.cs" />
+    <Compile Include="Models\EntityLayer\Grade.cs" />
+    <Compile Include="ViewModels\AbsenceVM.cs" />
+    <Compile Include="ViewModels\ClassVM.cs" />
+    <Compile Include="ViewModels\GradeVM.cs" />
+    <Compile Include="ViewModels\Commands\RelayCommand.cs" />
+    <Compile Include="ViewModels\CourseVM.cs" />
+    <Compile Include="ViewModels\PersonVM.cs" />
+    <Compile Include="Views\AbsencesWindow.xaml.cs">
+      <DependentUpon>AbsencesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddStudentWindow.xaml.cs">
+      <DependentUpon>AddStudentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddTeacherWindow.xaml.cs">
+      <DependentUpon>AddTeacherWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminsWindow.xaml.cs">
+      <DependentUpon>AdminsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\AnyClass.cs" />
+    <Compile Include="Views\AllClasses\Class1A.xaml.cs">
+      <DependentUpon>Class1A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class1B.xaml.cs">
+      <DependentUpon>Class1B.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class1C.xaml.cs">
+      <DependentUpon>Class1C.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class2A.xaml.cs">
+      <DependentUpon>Class2A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class2B.xaml.cs">
+      <DependentUpon>Class2B.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class2C.xaml.cs">
+      <DependentUpon>Class2C.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class3A.xaml.cs">
+      <DependentUpon>Class3A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class3B.xaml.cs">
+      <DependentUpon>Class3B.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class3C.xaml.cs">
+      <DependentUpon>Class3C.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class4A.xaml.cs">
+      <DependentUpon>Class4A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class4B.xaml.cs">
+      <DependentUpon>Class4B.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class4C.xaml.cs">
+      <DependentUpon>Class4C.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class5A.xaml.cs">
+      <DependentUpon>Class5A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class5B.xaml.cs">
+      <DependentUpon>Class5B.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class5C.xaml.cs">
+      <DependentUpon>Class5C.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class6A.xaml.cs">
+      <DependentUpon>Class6A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class6B.xaml.cs">
+      <DependentUpon>Class6B.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class6C.xaml.cs">
+      <DependentUpon>Class6C.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class7A.xaml.cs">
+      <DependentUpon>Class7A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class7B.xaml.cs">
+      <DependentUpon>Class7B.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class7C.xaml.cs">
+      <DependentUpon>Class7C.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class8A.xaml.cs">
+      <DependentUpon>Class8A.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class8B.xaml.cs">
+      <DependentUpon>Class8B.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllClasses\Class8C.xaml.cs">
+      <DependentUpon>Class8C.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AveragesWindow.xaml.cs">
+      <DependentUpon>AveragesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClassMasterAndSpecialization.xaml.cs">
+      <DependentUpon>ClassMasterAndSpecialization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CoursesViewWindow.xaml.cs">
+      <DependentUpon>CoursesViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CoursesWindow.xaml.cs">
+      <DependentUpon>CoursesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GradesWindow.xaml.cs">
+      <DependentUpon>GradesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModifyAndDeleteStudents.xaml.cs">
+      <DependentUpon>ModifyAndDeleteStudents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModifyAndDeleteTeachers.xaml.cs">
+      <DependentUpon>ModifyAndDeleteTeachers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectClassWindow.xaml.cs">
+      <DependentUpon>SelectClassWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentsWindow.xaml.cs">
+      <DependentUpon>StudentsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeachersWindow.xaml.cs">
+      <DependentUpon>TeachersWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AbsencesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddStudentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddTeacherWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class1A.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class1B.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class1C.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class2A.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class2B.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class2C.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class3A.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class3B.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class3C.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class4A.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class4B.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class4C.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class5A.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class5B.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class5C.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class6A.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class6B.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class6C.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class7A.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class7B.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class7C.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class8A.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class8B.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllClasses\Class8C.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AveragesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClassMasterAndSpecialization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CoursesViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CoursesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GradesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\AdminsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifyAndDeleteStudents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifyAndDeleteTeachers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectClassWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TeachersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\EntityLayer\Person.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Fonts\Dosis.ttf" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TextFiles\Clase.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

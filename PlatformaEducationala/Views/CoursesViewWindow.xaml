@@ -1,0 +1,26 @@
+﻿<Window x:Class="PlatformaEducationala.Views.CoursesViewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlatformaEducationala.Views"
+                xmlns:ctx="clr-namespace:PlatformaEducationala.ViewModels"
+        mc:Ignorable="d"
+        Title="CoursesViewWindow" Height="466" Width="651"
+          ResizeMode="NoResize"
+        Background="#181235">
+    <Window.DataContext>
+        <ctx:CourseVM/>
+    </Window.DataContext>
+    <Grid Margin="518,0,0,165">
+        <DataGrid Name="coursesGrid"  Margin="-60,0,10,-168" AutoGenerateColumns="False"
+                  ItemsSource="{Binding CoursesList, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"                
+                  ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="CourseName" Binding="{Binding CourseName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
+
